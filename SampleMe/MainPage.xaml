@@ -14,7 +14,7 @@
 
         <Grid HorizontalAlignment="Left" Height="425" Margin="195,10,0,0" VerticalAlignment="Top" Width="710">
             <Button x:Name="fileButton" Content="Choose file" HorizontalAlignment="Left" Margin="365,132,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.462,4.844" Click="fileButton_Click"/>
-            <TextBox x:Name="nameBox" HorizontalAlignment="Left" Margin="250,95,0,0" TextWrapping="Wrap" Text="SampleName" VerticalAlignment="Top" Width="360"/>
+            <TextBox x:Name="statusBox" HorizontalAlignment="Left" Margin="250,95,0,0" TextWrapping="Wrap" Text="Pick a file!" VerticalAlignment="Top" Width="360"/>
             <Button x:Name="generateButton" Content="Generate!" HorizontalAlignment="Left" Margin="250,132,0,0" VerticalAlignment="Top"/>
         </Grid>
 

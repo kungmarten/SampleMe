@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -37,31 +38,39 @@ namespace SampleMe
             openPicker.FileTypeFilter.Add(".csv");
             openPicker.FileTypeFilter.Add(".txt");
         }
+
+        private async Task<string> ReadFile(StorageFile file)
+        {
+            var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
+            string textBody;
+            ulong size = stream.Size;
+            using (var inputStream = stream.GetInputStreamAt(0))
+            {
+                using (var dataReader = new Windows.Storage.Streams.DataReader(inputStream))
+                {
+                    dataReader.UnicodeEncoding = Windows.Storage.Streams.UnicodeEncoding.Utf8;
+                    uint numBytesLoaded = await dataReader.LoadAsync((uint)size);
+                    textBody = dataReader.ReadString(numBytesLoaded);
+                    Debug.WriteLine(textBody.Trim());
+                }
+            }
+            return textBody;
+        }
         
         private async void fileButton_Click(object sender, RoutedEventArgs e)
         {
             StorageFile file = await openPicker.PickSingleFileAsync();
             if (file != null)
             {
-
-                var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
-                ulong size = stream.Size;
-                using (var inputStream = stream.GetInputStreamAt(0))
-                {
-                    using (var dataReader = new Windows.Storage.Streams.DataReader(inputStream))
-                    {
-                        dataReader.UnicodeEncoding = Windows.Storage.Streams.UnicodeEncoding.Utf8;
-                        uint numBytesLoaded = await dataReader.LoadAsync((uint)size);
-                        string text = dataReader.ReadString(numBytesLoaded);
-                        Debug.WriteLine(text.Trim());
-                    }
-                }
+                var fileContents = ReadFile(file);
+                if (fileContents != null)
+                    statusBox.Text = "File read OK!";
             }
 
             else
 
             {
-                //
+                statusBox.Text = "Not a valid file.";
             }
 
         }
