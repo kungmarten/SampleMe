@@ -53,7 +53,7 @@ namespace SampleMe
                         dataReader.UnicodeEncoding = Windows.Storage.Streams.UnicodeEncoding.Utf8;
                         uint numBytesLoaded = await dataReader.LoadAsync((uint)size);
                         string text = dataReader.ReadString(numBytesLoaded);
-                        Debug.WriteLine(text);
+                        Debug.WriteLine(text.Trim());
                     }
                 }
             }
