@@ -1,0 +1,22 @@
+﻿<Page
+    x:Class="SampleMe.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SampleMe"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <GridView x:Name="gridView" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="185" Height="1060">
+            <AppBarToggleButton x:Name="appBarToggleButton" Icon="Accept" Label="Generate Graph" Height="69" Width="75"/>
+        </GridView>
+
+        <Grid HorizontalAlignment="Left" Height="425" Margin="195,10,0,0" VerticalAlignment="Top" Width="710">
+            <Button x:Name="fileButton" Content="Choose file" HorizontalAlignment="Left" Margin="365,132,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.462,4.844" Click="fileButton_Click"/>
+            <TextBox x:Name="nameBox" HorizontalAlignment="Left" Margin="250,95,0,0" TextWrapping="Wrap" Text="SampleName" VerticalAlignment="Top" Width="360"/>
+            <Button x:Name="generateButton" Content="Generate!" HorizontalAlignment="Left" Margin="250,132,0,0" VerticalAlignment="Top"/>
+        </Grid>
+
+    </Grid>
+</Page>
